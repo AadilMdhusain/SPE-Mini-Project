@@ -54,13 +54,11 @@ pipeline {
         stage('Docker Push') {
             steps {
                 // Docker login using Jenkins credentials
-                withCredentials([usernamePassword(credentialsId: '$DOCKER_CREDENTIALS', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-                    // Docker login command
-                    sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin'
-                    
-                    // Push Docker image to Docker Hub
-                    sh 'docker push $DOCKER_IMAGE:latest'
-                }
+		sh '''
+                    echo "Logging in to Docker Hub..."
+                    echo "${DOCKER_PASSWORD}" | sudo docker login -u "${DOCKER_USERNAME}" --password-stdin
+                    sudo docker push ${DOCKER_IMAGE}
+                    '''
             }
         }
     }
