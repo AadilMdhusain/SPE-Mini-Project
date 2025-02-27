@@ -1,11 +1,27 @@
 pipeline {
     agent any
     environment {
-        DOCKER_IMAGE = 'scientific-calculator'   // Change to your Docker Hub repository
-        DOCKER_CREDENTIALS = 'docker-credentials-id' // Change to your Jenkins Docker credentials ID
+        DOCKER_IMAGE = "aadilmhusain/scientific-calculator"   // Change to your Docker Hub repository
+        DOCKER_USERNAME = "aadilmhusain" // Change to your Jenkins Docker credentials ID
+	DOCKER_PASSWORD = "aadildocker123"
     }
 
     stages {
+
+	stage('Setup Permissions') {
+            steps {
+                script {
+                    sh '''
+                    echo "Granting permissions to the Jenkins user.."
+                    sudo usermod -aG docker jenkins
+                    sudo mkdir -p /var/lib/jenkins/.ssh
+                    sudo chown -R jenkins:jenkins /var/lib/jenkins/.ssh
+                    sudo chmod 700 /var/lib/jenkins/.ssh
+                    '''
+                }
+            }
+        }	
+
         stage('Checkout') {
             steps {
                 // Checkout the code from GitHub repository
@@ -30,7 +46,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 // Build Docker image
-                sh 'docker build -t $DOCKER_IMAGE:latest .'
+		sh 'sudo docker build -t ${DOCKER_IMAGE} .'
             }
         }
 
@@ -57,4 +73,3 @@ pipeline {
         }
     }
 }
-
