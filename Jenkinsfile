@@ -25,7 +25,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout the code from GitHub repository
-                git 'https://github.com/AadilMdhusain/SPE-Mini-Project.git'
+                git branch:'main', url:'https://github.com/AadilMdhusain/SPE-Mini-Project.git'
             }
         }
 
