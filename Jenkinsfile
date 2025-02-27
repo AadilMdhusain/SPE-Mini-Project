@@ -46,6 +46,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 // Build Docker image
+		sh 'ls -l'
 		sh 'sudo docker build -t ${DOCKER_IMAGE} .'
             }
         }
