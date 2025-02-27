@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        DOCKER_IMAGE = 'yourdockerhub/calculator'   // Change to your Docker Hub repository
+        DOCKER_IMAGE = 'aadilmhusain/scientific-calculator'   // Change to your Docker Hub repository
         DOCKER_CREDENTIALS = 'docker-credentials-id' // Change to your Jenkins Docker credentials ID
     }
 
