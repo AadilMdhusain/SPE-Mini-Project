@@ -46,7 +46,6 @@ pipeline {
         stage('Docker Build') {
             steps {
                 // Build Docker image
-		git pull origin main
 		sh 'ls -l'
 		sh 'sudo docker build -t ${DOCKER_IMAGE} .'
             }
