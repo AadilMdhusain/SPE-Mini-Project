@@ -13,7 +13,7 @@ pipeline {
                 script {
                     sh '''
             echo "Granting permissions to the Jenkins user.."
-            echo "aadillinux73"|sudo -S usermod -aG docker jenkins
+            sudo usermod -aG docker jenkins
             sudo mkdir -p /var/lib/jenkins/.ssh
             sudo chown -R jenkins:jenkins /var/lib/jenkins/.ssh
             sudo chmod 700 /var/lib/jenkins/.ssh
