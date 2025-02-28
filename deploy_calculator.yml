@@ -23,5 +23,5 @@
       ignore_errors: yes
 
     - name: Run the Scientific Calculator container
-      command: docker run -dit --name calculator_container aadilmhusain/scientific-calculator:latest
+      command: docker run -dit --name calculator_container aadilmhusain/scientific-calculator:latest -vvvv
 
