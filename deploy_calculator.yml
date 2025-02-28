@@ -1,6 +1,7 @@
 - name: Deploy Scientific Calculator
   hosts: myhosts
   become: yes
+  gather_facts: no
   tasks:
     - name: Install Docker
       apt:
