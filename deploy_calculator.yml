@@ -1,7 +1,6 @@
 - name: Deploy Scientific Calculator
   hosts: myhosts
   become: yes
-  gather_facts: no
   environment:
     DEBIAN_FRONTEND: noninteractive
   tasks:
