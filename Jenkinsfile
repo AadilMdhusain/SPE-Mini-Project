@@ -61,6 +61,20 @@ pipeline {
                     '''
             }
         }
+	
+	 stage('Run Ansible Deployment') {
+            steps {
+                sh '''
+                    echo "Creating Ansible inventory file..."
+                    echo "[myhosts]" > inventory.ini
+                    echo "localhost ansible_connection=local ansible_become_pass=aadillinux73" >> inventory.ini
+
+                    echo "Running Ansible Playbook..."
+                    ansible-playbook -i inventory.ini deploy_calculator.yml --ask-become-pass
+                '''
+            }
+        }
+
     }
 
     post {

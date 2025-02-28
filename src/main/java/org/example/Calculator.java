@@ -1,3 +1,5 @@
+package org.example;
+
 public class Calculator {
     // Square root function
     public double sqrt(double x) {
