@@ -2,8 +2,6 @@ pipeline {
     agent any
     environment {
         DOCKER_IMAGE = "aadilmhusain/scientific-calculator"   // Change to your Docker Hub repository
-        DOCKER_USERNAME = "aadilmhusain" // Change to your Jenkins Docker credentials ID
-	DOCKER_PASSWORD = "aadildocker123"
     }
 
     stages {
@@ -53,12 +51,15 @@ pipeline {
 
         stage('Docker Push') {
             steps {
-                // Docker login using Jenkins credentials
+                withCredentials([usernamePassword(credentialsId: 'docker-credentials-id', 
+                                                  usernameVariable: 'DOCKER_USERNAME', 
+                                                  passwordVariable: 'DOCKER_PASSWORD')]){
 		sh '''
                     echo "Logging in to Docker Hub..."
                     echo "${DOCKER_PASSWORD}" | sudo docker login -u "${DOCKER_USERNAME}" --password-stdin
                     sudo docker push ${DOCKER_IMAGE}
                     '''
+		}
             }
         }
 	
