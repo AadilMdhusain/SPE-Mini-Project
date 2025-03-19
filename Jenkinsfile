@@ -4,6 +4,7 @@ pipeline {
         DOCKER_IMAGE = "aadilmhusain/scientific-calculator"   // Change to your Docker Hub repository
     }
 
+
     stages {
 
 	stage('Setup Permissions') {
